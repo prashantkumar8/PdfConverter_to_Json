@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'reader/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'reader/bootstrap.min.css' %}" />
+<style>
+	body {
+		margin-top: 80px;
+		background-color: #b2b2b2;
+		background-color: rgba(0, 0, 0, .1);
+	}
+input[type=file] {
+    margin: 0 auto;
+}
+</style>
+</head>
+<body bgcolor="#F6E6FA" >
+	<form method="post" action="/pdfreader/upload/" name="submit" enctype="multipart/form-data" align="middle">
+		{% csrf_token %}
+		<!-- {{ form }} -->
+		{% for field in form %}
+			<div class="md-form" >
+				<label for="form1" class="">{{ field.label_tag }}</label>
+				{{ field }}
+
+			</div>
+			<br>
+
+			        <!--     {{ field.label_tag }}  
+                    <div class="forminput">
+				          {{ field }}
+				       
+		            </div> -->
+	          
+        {% endfor %}
+        <br>
+		<input type="submit" name="submit" class="button" value="Submit">
+		<br>
+		<br>
+	</form>
+	<form method="get" action="/pdfreader/list/" name="submit" enctype="multipart/form-data" align="middle">
+		<div class="md-form" >
+		    <br>
+			<br>
+			<label for="name" >Name :</label>
+			<input type="text" name="name" placeholder="Name of User">
+		</div>
+		<br>
+		<br>	
+		<input type="submit" name="submit" class="button" value="View Transaction in Json">
+		<!-- <input type="submit" name="submit" class="button" value="View"> -->
+		<!-- <a href="/pdfreader/list/" class="btn btn-success btn-lg" role="button">View Transaction</a> -->
+	</form>
+</body>
+</html>
